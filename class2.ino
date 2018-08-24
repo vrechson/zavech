@@ -20,9 +20,8 @@
 
 rgb_lcd lcd;
 
-const int colorR = 255;
-const int colorG = 0;
-const int colorB = 0;
+const int pinButton = 4;
+int counter = 0;
 
 byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
@@ -39,19 +38,45 @@ void setup() {
   Serial.println(Ethernet.localIP());
   // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
-  lcd.setRGB(colorR, colorG, colorB);
+  lcd.setRGB(186, 85, 211);
   
   // Print a message to the LCD.
   lcd.print("Press B or V!");
 
   //DEFINE LED
   pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(pinButton, INPUT);
 }
 
 
 void loop() {
-  EthernetClient client = server.available();
+  Serial.println(counter);
+  if(digitalRead(pinButton)){
+    counter++;
+  }
+  if(counter>0){
+    if(counter%2==0){
+        lcd.begin(16, 2);
+        lcd.setRGB(255, 127, 80);
+        lcd.setCursor(0, 0);
+        lcd.print("Bruna Zamith");
+        lcd.setCursor(0,1);
+        lcd.print("628093");
+        delay(300);
+    }
+    else{
+        lcd.begin(16, 2);
+        lcd.setRGB(135, 206, 235);
+        lcd.setCursor(0, 0);
+        lcd.print("Matheus Vrech");
+        lcd.setCursor(0,1);
+        lcd.print("727349");
+        delay(300);
+    }
+  }
   
+  
+  EthernetClient client = server.available();
   //GET HTTP PACKET
   String readString; 
   if (client) {
@@ -79,19 +104,21 @@ void loop() {
           digitalWrite(LED_BUILTIN, LOW);
         }
         else if(readString.indexOf("bruna") > 0){
+          lcd.begin(16, 2);
+          lcd.setRGB(255, 127, 80);
           lcd.setCursor(0, 0);
           lcd.print("Bruna Zamith");
           lcd.setCursor(0,1);
           lcd.print("628093");
         }
         else if(readString.indexOf("vrechson") > 0){
+          lcd.begin(16, 2);
+          lcd.setRGB(135, 206, 235);
           lcd.setCursor(0, 0);
           lcd.print("Matheus Vrech");
           lcd.setCursor(0,1);
           lcd.print("727349");
         }
-
-
         if (c == '\n' && currentLineIsBlank) {
           client.println("HTTP/1.1 200 OK");
           client.println("Content-Type: text/html");
