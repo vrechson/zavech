@@ -11,6 +11,8 @@
  by Tom Igoe
  modified 02 Sept 2015
  by Arturo Guadalupi
+
+ Besides that, this project was modified by Matheus Vrech and Bruna Zamith for university classes purpose, enjoy it
  */
 
 #include <SPI.h>
@@ -26,6 +28,7 @@ int counter = 0;
 byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
 };
+
 IPAddress ip(200, 18, 97, 11);
 EthernetServer server(80);
 
@@ -36,26 +39,28 @@ void setup() {
   server.begin();
   Serial.print("server is at ");
   Serial.println(Ethernet.localIP());
-  // set up the LCD's number of columns and rows:
+
+  /* set up the LCD's number of columns and rows: */
   lcd.begin(16, 2);
   lcd.setRGB(186, 85, 211);
   
-  // Print a message to the LCD.
+  /* Print a message to the LCD. */
   lcd.print("Press B or V!");
 
-  //DEFINE LED
+  /* Define a led to use */
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(pinButton, INPUT);
 }
 
 
 void loop() {
+
   Serial.println(counter);
-  if(digitalRead(pinButton)){
+  if (digitalRead(pinButton)){
     counter++;
   }
-  if(counter>0){
-    if(counter%2==0){
+  if (counter > 0){
+    if (counter % 2 == 0) {
         lcd.begin(16, 2);
         lcd.setRGB(255, 127, 80);
         lcd.setCursor(0, 0);
@@ -63,8 +68,7 @@ void loop() {
         lcd.setCursor(0,1);
         lcd.print("628093");
         delay(300);
-    }
-    else{
+    } else {
         lcd.begin(16, 2);
         lcd.setRGB(135, 206, 235);
         lcd.setCursor(0, 0);
@@ -77,7 +81,7 @@ void loop() {
   
   
   EthernetClient client = server.available();
-  //GET HTTP PACKET
+  /* Get the http packet*/
   String readString; 
   if (client) {
     boolean currentLineIsBlank = true;
@@ -85,25 +89,25 @@ void loop() {
       if (client.available()) {
         char c = client.read();
         
-        // ?
+        /* Save the current state of c */
         char b = c;
 
-        //STORE PACKET
+        /* Store the entire packet */
         if (readString.length() < 100) {
           readString += c; 
         }
 
-        //?
+        /* Restore the c value*/
         c = b;
         
-        //CHECK IF IT IS ON OR OFF
-        if (readString.indexOf("lighton") > 0){
+        /* Receive GET commands */
+        if (readString.indexOf("lighton") > 0) {
           digitalWrite(LED_BUILTIN, HIGH);  
         }
-        else if (readString.indexOf("lightoff") > 0){
+        else if (readString.indexOf("lightoff") > 0) {
           digitalWrite(LED_BUILTIN, LOW);
         }
-        else if(readString.indexOf("bruna") > 0){
+        else if (readString.indexOf("bruna") > 0) {
           lcd.begin(16, 2);
           lcd.setRGB(255, 127, 80);
           lcd.setCursor(0, 0);
@@ -111,7 +115,7 @@ void loop() {
           lcd.setCursor(0,1);
           lcd.print("628093");
         }
-        else if(readString.indexOf("vrechson") > 0){
+        else if (readString.indexOf("vrechson") > 0) {
           lcd.begin(16, 2);
           lcd.setRGB(135, 206, 235);
           lcd.setCursor(0, 0);
@@ -127,10 +131,9 @@ void loop() {
           client.println();
           client.println("<!DOCTYPE HTML>");
           client.println("<html>");
-          client.println("<a href=\"?lighton\">TURN ON</a></br>");
-          client.println("<a href=\"?lightoff\">TURN OFF</a>");
-          client.println("<script src=\"https://code.jquery.com/jquery-3.3.1.min.js\" integrity=\"sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=\" crossorigin=\"anonymous\"></script>");
-          client.println("<script type=\"text/javascript\" src=\"https://cdn.rawgit.com/whoismath/zavech/master/lolo.js\"></script>");
+          client.println("<head></head>");
+          /* easter egg for ninjas */
+          client.println("<body>i'm a happy arduino, and you found my easter egg!<br>curiosity will kill you.</body>");
           client.println("</html>");
           break;
         }
@@ -142,6 +145,7 @@ void loop() {
       }
     }
 
+    /* wait for something: nothing at all*/
     delay(1);
     client.stop();
     Serial.println("client disconnected");
