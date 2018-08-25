@@ -1,7 +1,21 @@
 $(function(){
 
-	if (Cookies.get('arduino'))
+	if (Cookies.get('arduino')) {
 		$("#page-wrapper > main > div > div.container-fluid > div:nth-child(1)").hide();
+		$.notify({
+            /* title and message*/
+            title: 'Connected', message: "you're connected to a device."
+        }, /*settings*/{
+            type: 'success', allow_dismiss: false, newest_on_top: true
+        });
+	} else {
+		$.notify({
+            /* title and message*/
+            title: 'Disconnected', message: "you must connect to a device."
+        }, /*settings*/{
+            type: 'danger', allow_dismiss: false, newest_on_top: true
+        });
+	}
 
 	$("#connect").click(function() {
 		if ($("#inputAddress").val() == "")
