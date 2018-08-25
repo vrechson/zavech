@@ -1,6 +1,6 @@
 $(function() {
 	$(document).keypress(function(e) {
-		if(e.which == 66) {
+		if(e.which == 98) {
 			$.ajax({
 				url: "http://" + Cookies.get('arduino') + "/?bruna",
 				method: "get",
@@ -12,7 +12,7 @@ $(function() {
 					}
 				}
 			});
-		} else if (e.which == 86) {
+		} else if (e.which == 118) {
 			console.log('vrech pwns');
 			$.ajax({
 				url: "http://" + Cookies.get('arduino') + "/?vrechson",
@@ -57,6 +57,5 @@ $(function() {
 				}
 			  });
 	});
-
 
 });
