@@ -27,6 +27,7 @@ $(function(){
 			url: "http://" + $.cookie("arduino")+ "/?lighton",
 			context: document.body
 			success: {
+				console.log("led ligado");
 			}
 		});
 	});
@@ -39,6 +40,7 @@ $(function(){
 			url: "http://" + $.cookie("arduino")+ "/?lightoff",
 			context: document.body
 			success: {
+				console.log("led desligado");
 			}
 		});
 	});

@@ -3,11 +3,11 @@ $(function(){
 	if ($.cookie("arduino"))
 		$("#page-wrapper > main > div > div.container-fluid > div:nth-child(1)").hide();
 
-	$("#page-wrapper > main > div > div.container-fluid > div:nth-child(1) > div > div > div.portlet-body > form > button").click(function() {
+	$("#connect").click(function() {
 		if ($("#inputAddress").val() == "")
 			$("#inputAddress").val() = $("#inputAddress").attr("placeholder");
 
-
+			console.log("oi");
 		$.ajax({
 			url: "http://" + $("#inputAddress").val() + "/",
 			method: "get",
@@ -18,4 +18,5 @@ $(function(){
 			},
 		  });
 
+	});
 });
