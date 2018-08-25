@@ -1,48 +1,61 @@
-$(function(){
+$(function() {
 	$(document).keypress(function(e) {
 		if(e.which == 66) {
-			console.log('oi bruna, sumida');
 			$.ajax({
-				url: "http://" + $.cookie("arduino")+ "/?bruna",
-				context: document.body
-				success: {
+				url: "http://" + Cookies.get('arduino') + "/?bruna",
+				method: "get",
+				dataType: 'jsonp',
+				crossdomain: true,
+				statusCode: {
+					200: function() {
+						console.log('oi bruna, sumida');	
+					}
 				}
 			});
 		} else if (e.which == 86) {
 			console.log('vrech pwns');
 			$.ajax({
-				url: "http://" + $.cookie("arduino")+ "/?vrechson",
-				context: document.body
-				success: {
+				url: "http://" + Cookies.get('arduino') + "/?vrechson",
+				method: "get",
+				dataType: 'jsonp',
+				crossdomain: true,
+				statusCode: {
+					200: function() {
+						console.log('uh lala');	
+					}
 				}
-			});
+			  });
 		}
 	});
 
-	$("#page-wrapper > main > div > div.container-fluid > div > div > div:nth-child(1) > div.portlet-body > a.btn.btn-success.mr-1.mb-2").click(function() {
-		if (!$.cookie("arduino"))
-			return;
+	$("#turnon").click(function() {
 
-		$.ajax({
-			url: "http://" + $.cookie("arduino")+ "/?lighton",
-			context: document.body
-			success: {
-				console.log("led ligado");
-			}
-		});
+			$.ajax({
+				url: "http://" + Cookies.get('arduino') + "/?lighton",
+				method: "get",
+				dataType: 'jsonp',
+				crossdomain: true,
+				statusCode: {
+					200: function() {
+						console.log('led ligado!');	
+					}
+				}
+			  });
 	});
 
-	$("#page-wrapper > main > div > div.container-fluid > div > div > div:nth-child(1) > div.portlet-body > a.btn.btn-danger.mr-1.mb-2").click(function() {
-		if (!$.cookie("arduino"))
-			return;
+	$("#turnoff").click(function() {
 
-		$.ajax({
-			url: "http://" + $.cookie("arduino")+ "/?lightoff",
-			context: document.body
-			success: {
-				console.log("led desligado");
-			}
-		});
+			$.ajax({
+				url: "http://" + Cookies.get('arduino') + "/?lightoff",
+				method: "get",
+				dataType: 'jsonp',
+				crossdomain: true,
+				statusCode: {
+					200: function() {
+						console.log('led desligado');	
+					}
+				}
+			  });
 	});
 
 
