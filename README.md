@@ -20,7 +20,7 @@ All projects were developed making use of an Arduino Mega, some eletronic stuff 
 _P.S: The implementations are sequential and incremental._
 
 ### Reports
-Besides that, from Reports/ directory at this repository, it is possible to access the reports written for each class, however they are in Portuguese language. Sorry for that :persevere:
+Besides that, from Reports/ directory at this repository, it is possible to access the reports written for each class, however they are in Portuguese language. Sorry about that :persevere:
 
 ## Web Page
 You can access our project's [web page](https://whoismath.github.io/zavech/) directly from this repository.
