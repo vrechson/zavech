@@ -11,7 +11,6 @@
  by Tom Igoe
  modified 02 Sept 2015
  by Arturo Guadalupi
-
  Besides that, this project was modified by Matheus Vrech and Bruna Zamith for university classes purpose, enjoy it
  */
 
@@ -54,28 +53,14 @@ void setup() {
 
 
 void loop() {
-
-  Serial.println(counter);
   if (digitalRead(pinButton)){
     counter++;
   }
   if (counter > 0){
     if (counter % 2 == 0) {
-        lcd.begin(16, 2);
-        lcd.setRGB(255, 127, 80);
-        lcd.setCursor(0, 0);
-        lcd.print("Bruna Zamith");
-        lcd.setCursor(0,1);
-        lcd.print("628093");
-        delay(300);
+        display_lcd("Bruna Zamith", "628093");
     } else {
-        lcd.begin(16, 2);
-        lcd.setRGB(135, 206, 235);
-        lcd.setCursor(0, 0);
-        lcd.print("Matheus Vrech");
-        lcd.setCursor(0,1);
-        lcd.print("727349");
-        delay(300);
+        display_lcd("Matheus Vrech", "727349");
     }
   }
   
@@ -89,17 +74,13 @@ void loop() {
       if (client.available()) {
         char c = client.read();
         
-        /* Save the current state of c */
-        char b = c;
-
+         Serial.write(c);
+         
         /* Store the entire packet */
         if (readString.length() < 100) {
-          readString += c; 
-        }
+          readString += c;
+        } 
 
-        /* Restore the c value*/
-        c = b;
-        
         /* Receive GET commands */
         if (readString.indexOf("lighton") > 0) {
           digitalWrite(LED_BUILTIN, HIGH);  
@@ -108,25 +89,16 @@ void loop() {
           digitalWrite(LED_BUILTIN, LOW);
         }
         else if (readString.indexOf("bruna") > 0) {
-          lcd.begin(16, 2);
-          lcd.setRGB(255, 127, 80);
-          lcd.setCursor(0, 0);
-          lcd.print("Bruna Zamith");
-          lcd.setCursor(0,1);
-          lcd.print("628093");
+          display_lcd("Bruna Zamith", "628093");
         }
         else if (readString.indexOf("vrechson") > 0) {
-          lcd.begin(16, 2);
-          lcd.setRGB(135, 206, 235);
-          lcd.setCursor(0, 0);
-          lcd.print("Matheus Vrech");
-          lcd.setCursor(0,1);
-          lcd.print("727349");
+          display_lcd("Matheus Vrech", "727349");
         }
+                  
         if (c == '\n' && currentLineIsBlank) {
           client.println("HTTP/1.1 200 OK");
           client.println("Content-Type: text/html");
-          client.println("Connection: close"); 
+          client.println("Connection: keep-alive"); 
           //client.println("Refresh: 5");  // refresh the page automatically every 5 sec
           client.println();
           client.println("<!DOCTYPE HTML>");
@@ -135,7 +107,6 @@ void loop() {
           /* easter egg for ninjas */
           client.println("<body>i'm a happy arduino, and you found my easter egg!<br>curiosity will kill you.</body>");
           client.println("</html>");
-          break;
         }
         if (c == '\n') {
           currentLineIsBlank = true;
@@ -147,7 +118,22 @@ void loop() {
 
     /* wait for something: nothing at all*/
     delay(1);
-    client.stop();
-    Serial.println("client disconnected");
+    //client.stop();
+    //Serial.println("client disconnected");
   }
+}
+
+void display_lcd(String nome, String ra){
+        lcd.clear();
+        if(nome.indexOf("Zamith") > 0){
+          lcd.setRGB(255, 127, 80);
+        }
+        else if(nome.indexOf("Vrech") > 0){
+          lcd.setRGB(135, 206, 235);
+        }
+        lcd.setCursor(0, 0);
+        lcd.print(nome);
+        lcd.setCursor(0,1);
+        lcd.print(ra);
+        delay(300);
 }
