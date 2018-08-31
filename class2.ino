@@ -83,16 +83,24 @@ void loop() {
 
         /* Receive GET commands */
         if (readString.indexOf("lighton") > 0) {
-          digitalWrite(LED_BUILTIN, HIGH);  
+          digitalWrite(LED_BUILTIN, HIGH);
+          client.println("HTTP/1.1 200 OK");
+          break;
         }
         else if (readString.indexOf("lightoff") > 0) {
           digitalWrite(LED_BUILTIN, LOW);
+          client.println("HTTP/1.1 200 OK");
+          break;
         }
         else if (readString.indexOf("bruna") > 0) {
           display_lcd("Bruna Zamith", "628093");
+          client.println("HTTP/1.1 200 OK");
+          break;
         }
         else if (readString.indexOf("vrechson") > 0) {
           display_lcd("Matheus Vrech", "727349");
+          client.println("HTTP/1.1 200 OK");
+          break;
         }
                   
         if (c == '\n' && currentLineIsBlank) {
