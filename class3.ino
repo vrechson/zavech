@@ -61,10 +61,11 @@ void setup() {
 
 
 void loop() {
-  myStepper.step(1);
-  if (digitalRead(pinButton)){
+  //myStepper.step(1);
+  if (digitalRead(pinButton)) {
     counter++;
   }
+
   if (counter > 0){
     if (counter % 2 == 0) {
         display_lcd("Bruna Zamith", "628093");
@@ -73,9 +74,11 @@ void loop() {
     }
   }
   
+  if(_running == 1)
+    myStepper.step(_direction * 20);
   
   EthernetClient client = server.available();
-  /* Get the http packet*/
+  /* Get the http packet */
   String readString; 
   if (client) {
     boolean currentLineIsBlank = true;
@@ -117,7 +120,43 @@ void loop() {
           client.println("HTTP/1.1 200 OK");
           break;
         }
-
+        else if (readString.indexOf("medium") > 0) {
+          myStepper.setSpeed(40);
+          client.println("HTTP/1.1 200 OK");
+          break;
+        }
+        else if (readString.indexOf("fast") > 0) {
+          myStepper.setSpeed(75);
+          client.println("HTTP/1.1 200 OK");
+          break;
+        }
+        else if (readString.indexOf("stop") > 0) {
+          _running = 0;
+          client.println("HTTP/1.1 200 OK");
+          break;
+        }
+        else if (readString.indexOf("90") > 0) {
+          myStepper.step(_direction * 27);
+          _running = 0;
+          client.println("HTTP/1.1 200 OK");
+          break;
+        }             
+        else if (readString.indexOf("180") > 0) {
+          myStepper.step(_direction * 55);
+          _running = 0;
+          client.println("HTTP/1.1 200 OK");
+          break;
+        }
+        else if (readString.indexOf("rotate") > 0) {
+          _running = 1;
+          client.println("HTTP/1.1 200 OK");
+          break;
+        }
+        else if (readString.indexOf("reverse") > 0) {
+          _direction = _direction ? -1 : 1;
+          client.println("HTTP/1.1 200 OK");
+          break;
+        }
         /* end of motor functions */                                                   
         if (c == '\n' && currentLineIsBlank) {
           client.println("HTTP/1.1 200 OK");
@@ -161,4 +200,3 @@ void display_lcd(String nome, String ra){
         lcd.print(ra);
         delay(300);
 }
-
