@@ -1,46 +1,42 @@
 <!DOCTYPE html>
-<!-- saved from url=(0078)file:///C:/Users/usuario/Downloads/zavech-master/zavech-master/activities.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
+    <head>
         <!-- Required meta tags -->
-        
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Dashboard</title>    
         <!-- Bootstrap-->
-        <link href="./activities_files/bootstrap.min.css" rel="stylesheet">
+        <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <!--Common Plugins CSS -->
-        <link href="./activities_files/plugins.css" rel="stylesheet">
+        <link href="css/plugins/plugins.css" rel="stylesheet">
         <!--fonts-->
-        <link href="./activities_files/line-icons.css" rel="stylesheet">
-        <link href="./activities_files/fontawesome-all.min.css" rel="stylesheet">  
-                <link href="./activities_files/chartist.min.css" rel="stylesheet">
-        <link href="./activities_files/chartist-custom.css" rel="stylesheet">
+        <link href="lib/line-icons/line-icons.css" rel="stylesheet">
+        <link href="lib/font-awesome/css/fontawesome-all.min.css" rel="stylesheet">  
+                <link href="lib/chartist/chartist.min.css" rel="stylesheet" />
+        <link href="css/chartist-custom.css" rel="stylesheet" />
         <!-- jvectormap -->
-        <link href="./activities_files/jquery-jvectormap-2.0.2.css" rel="stylesheet">
-        <link href="./activities_files/style.css" rel="stylesheet">
-    <style type="text/css">/* Chart.js */
-@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
-    <body class="layout-aside-mini  pace-done"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
-  <div class="pace-progress-inner"></div>
-</div>
-<div class="pace-activity"></div></div>
+        <link href="lib/vector-map/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body class="layout-aside-mini">
 
         <div class="page-wrapper" id="page-wrapper">
             <aside id="page-aside-mini" class="aside-icon-o aside-light">
                 <span class="aside-close h-md-up text-muted"><i class="icon-Close"></i></span>
                 <div class="sidenav-mini">
-                      <a href="file:///C:/Users/usuario/Downloads/zavech-master/zavech-master/activities.html#" class="app-logo d-flex justify-content-center align-items-center">
+                      <a href="#" class="app-logo d-flex justify-content-center align-items-center">
                         <i class="fa fa-paper-plane"></i><span class="logo-caption"> </span>
                     </a>
                     <div class="flex">
                         <nav class="aside-mini-content">
                             <ul class="nav">
                                 <li class="nav-item dropdown">
-                                    <a data-toggle="tooltip" data-placement="right" title="" href="file:///C:/Users/usuario/Downloads/zavech-master/zavech-master/index.html" class="nav-link" data-original-title="Home">
+                                    <a data-toggle="tooltip" data-placement="right" title="Home" href="index.html" class="nav-link">
                                         <span class="nav-text">Home</span>  <i class="fa fa-home"></i> 
                                       </a>
                                 </li>
                                  <li class="nav-item">
-                                    <a data-toggle="tooltip" data-placement="right" title="" href="file:///C:/Users/usuario/Downloads/zavech-master/zavech-master/activities.html#" class="nav-link" data-original-title="Activities">
+                                    <a data-toggle="tooltip" data-placement="right" title="Activities" href="#" class="nav-link">
                                    <span class="nav-text">Dashboard</span>      <i class="fa fa-coffee"></i>
                                     </a>
                                 </li>
@@ -74,7 +70,7 @@
                  <div class="page-content">
                     
                     <div class="page-header-img" style="max-height: 700px; overflow: hidden; ">
-                        <img src="./activities_files/desk.jpg" alt="" class="img-fluid">
+                        <img src="images/desk.jpg" alt="" class="img-fluid">
                     </div>
                      <div class="page-header-space d-flex flex-row flex">
                          <div class="container-fluid">
@@ -83,8 +79,7 @@
                      </div>
                     <div class="container-fluid">
 
-                        
-    <div class="row">
+ <div class="row">
                             <div class="col-lg-6">
                                 <div class="portlet-box ui-buttons-col mb-30">
                                     <div class="portlet-header flex-row flex d-flex align-items-center b-b">
@@ -163,6 +158,34 @@
 
                                 </div><!--portlet-->
                             </div><!--col-->
+                            <div class="col-lg-6">
+                                <div class="portlet-box ui-buttons-col mb-30">
+                                    <div class="portlet-header flex-row flex d-flex align-items-center b-b">
+                                        <div class="flex d-flex flex-column">
+                                            <h3>Stepper Motor</h3> 
+                                            <span class="fs13 d-block pt-1">Run our motor <code>step by step</code> or <code>away</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <h5>Speed:</h5>
+                                        <a id="turnon" class="btn btn-info mr-1 mb-2">Slow</a>
+                                        <a id="turnoff" class="btn btn-info mr-1 mb-2">Medium</a>
+                                        <a id="turnoff" class="btn btn-info mr-1 mb-2">Fast</a>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <h5>Control:</h5>
+                                        <a id="turnon" class="btn btn-danger mr-1 mb-2">Stop</a>
+                                        <a id="turnoff" class="btn btn-success mr-1 mb-2">Rotate</a>
+                                        <a id="turnoff" class="btn btn-warning mr-1 mb-2">Reverse</a>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <h5>Step away:</h5>
+                                        <a id="turnon" class="btn btn-secondary mr-1 mb-2">90 degrees</a>
+                                        <a id="turnoff" class="btn btn-secondary mr-1 mb-2">180 degrees</a>
+									</div>
+
+                                </div><!--portlet-->
+                            </div><!--col-->
                         </div>
                     </div>
                 </div>
@@ -170,9 +193,9 @@
                     <div class="d-flex flex align-items-center pl-15 pr-15">
                         <div class="d-flex flex p-3 ml-auto">
                             <div>
-                                <a href="file:///C:/Users/usuario/Downloads/zavech-master/zavech-master/activities.html#" class="d-inline-flex pl-0 pr-2 b-r">Contact</a>
-                                <a href="file:///C:/Users/usuario/Downloads/zavech-master/zavech-master/activities.html#" class="d-inline-flex pl-2 pr-2 b-r">Storage</a>
-                                <a href="file:///C:/Users/usuario/Downloads/zavech-master/zavech-master/activities.html#" class="d-inline-flex pl-2 pr-2 ">Privacy</a>
+                                <a href="#" class="d-inline-flex pl-0 pr-2 b-r">Contact</a>
+                                <a href="#" class="d-inline-flex pl-2 pr-2 b-r">Storage</a>
+                                <a href="#" class="d-inline-flex pl-2 pr-2 ">Privacy</a>
                             </div>
                         </div>
                         <div class="d-flex flex p-3 mr-auto justify-content-end">
@@ -183,21 +206,20 @@
             </main><!-- page content end-->
         </div><!-- app's main wrapper end -->
         <!-- Common plugins -->
-        <script type="text/javascript" src="./activities_files/plugins.js.download"></script> 
-        <script type="text/javascript" src="./activities_files/appUi-custom.js.download"></script> 
-            <script type="text/javascript" src="./activities_files/chart.min.js.download"></script>
-        <script type="text/javascript" src="./activities_files/jquery.peity.min.js.download"></script>
-        <script src="./activities_files/chartist.min.js.download"></script>
-        <script src="./activities_files/chartist-tooltip.js.download"></script>
+        <script type="text/javascript" src="js/plugins/plugins.js"></script> 
+        <script type="text/javascript" src="js/appUi-custom.js"></script> 
+            <script type="text/javascript" src="lib/chartjs/dist/chart.min.js"></script>
+        <script type="text/javascript" src="lib/peity/jquery.peity.min.js"></script>
+        <script src="lib/chartist/chartist.min.js"></script>
+        <script src="lib/chartist/chartist-tooltip.js"></script>
         
         <!-- jvectormap -->
-        <script src="./activities_files/jquery-jvectormap-2.0.2.min.js.download"></script>
-        <script src="./activities_files/jquery-jvectormap-world-mill-en.js.download"></script>
-       <script type="text/javascript" src="./activities_files/dashboard.custom.js.download"></script><div class="jvectormap-tip"></div> 
-       <script type="text/javascript" src="./activities_files/bootstrap-notify.min.js.download"></script>
-        <script type="text/javascript" src="./activities_files/bs-notify-custom.js.download"></script>
-        <script src="./activities_files/js.cookie.min.js.download"></script>
-        <script type="text/javascript" src="./activities_files/activities.js.download"></script>
-    
-
-</body></html>
+        <script src="lib/vector-map/jquery-jvectormap-2.0.2.min.js"></script>
+        <script src="lib/vector-map/jquery-jvectormap-world-mill-en.js"></script>
+       <script type="text/javascript" src="js/dashboard.custom.js"></script> 
+       <script type="text/javascript" src="lib/bootstrap-notify/bootstrap-notify.min.js"></script>
+        <script type="text/javascript" src="js/plugins-custom/bs-notify-custom.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+        <script type="text/javascript" src="js/activities.js"></script>
+    </body>
+</html>
