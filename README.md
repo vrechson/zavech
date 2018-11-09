@@ -13,8 +13,8 @@ All projects were developed making use of an Arduino Mega, some eletronic stuff 
 ## Classes
 - [x] Class 1: Turn on builtin LED via Web
 - [x] Class 2: Display information on LCD via Web
-- [ ] Class 3: Control step motor via Web
-- [ ] Class 4: Control DC motor via Web
+- [x] Class 3: Control step motor via Web
+- [x] Class 4: Control DC motor via Web
 - [ ] Class 5: Control PID via Web
 
 _P.S: The implementations are sequential and incremental._
