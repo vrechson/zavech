@@ -25,8 +25,4 @@ Besides that, from Reports/ directory at this repository, it is possible to acce
 ## Web Page
 You can access our project's [web page](https://whoismath.github.io/zavech/) directly from this repository.
 
-
-
-
-
 ~~And that's all folks~~
